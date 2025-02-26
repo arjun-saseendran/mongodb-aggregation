@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getActiveUsers, getActiveUsersCount, getInactiveUser, getInactiveUsersCount, getUsers, signup } from "../controllers/userController.js";
+import { getActiveUsers, getActiveUsersCount, getInactiveUser, getInactiveUsersCount, getUserAgeAvgByGender, getUsers, signup } from "../controllers/userController.js";
 
 export const userRouter = Router();
 
@@ -9,3 +9,4 @@ userRouter.get('/active-users', getActiveUsers)
 userRouter.get('/inactive-users', getInactiveUser)
 userRouter.get('/active-users-count', getActiveUsersCount);
 userRouter.get('/inactive-users-count',getInactiveUsersCount)
+userRouter.get('/get-avg-age-by-gender',getUserAgeAvgByGender)
