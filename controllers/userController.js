@@ -46,7 +46,37 @@ export const signup = async (req, res) => {
   }
 };
 
+// Get all users.
 export const getUsers = async(req, res) => {
   const users = await User.find();
   res.status(200).json({message: 'User data fetched successfully!', users})
 }
+
+// Get active users.
+export const getActiveUsers =  async(req, res) => {
+  const activeUsers = await User.aggregate([{$match: {isActive: true}}])
+  res.status(200).json({message: 'Active users fetched successfully!', activeUsers})
+}
+
+// Get active users count.
+export const getActiveUsersCount = async(req, res) => {
+  const activeUsersCount = await User.aggregate([{
+    $match: {isActive: true}
+  }, {
+    $count: 'Active Users'
+  }])
+  res.status(200).json({message: 'Active users count fetched!', activeUsersCount})
+}
+
+//Get inactive users.
+export const getInactiveUser = async(req, res) =>{
+  const inactiveUsers = await User.aggregate([{ $match: { isActive: false } }]);
+  res.status(200).json({message: 'Inactive users fetched successfully!', inactiveUsers})
+}
+
+// Get inactvie users count.
+export const getInactiveUsersCount = async(req, res) => {
+  const inactiveUsersCount = await User.aggregate([{ $match: { isActive: false } }, { $count: 'Inactive users count!' }]);
+  res.status(200).json({ message: 'Inactive users count feteched!', inactiveUsersCount})
+}
+
