@@ -1,0 +1,19 @@
+{
+  "name": "aggregation",
+  "version": "1.0.0",
+  "description": "mongodb workout",
+  "license": "ISC",
+  "author": "arjunsaseendran",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongoose": "^8.10.2",
+    "nodemon": "^3.1.9"
+  }
+}
