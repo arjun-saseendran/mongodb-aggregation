@@ -115,3 +115,26 @@ export const getUserAgeAvgByGender = async (req, res) => {
     .status(200)
     .json({ message: "Average age by gender fetched!", averageAgeByGender });
 };
+
+// Find top three favourite fruit.
+export const topThreeFavouritFruit = async (req, res) => {
+  const topThree = await User.aggregate([
+    {
+      $group: {
+        _id: "$favoriteFruit",
+        count: { $sum: 1 },
+      },
+    },
+    {
+      $sort: {
+        count: -1,
+      },
+    },
+    {
+      $limit: 3,
+    },
+  ]);
+  res
+    .status(200)
+    .json({ message: "User top 3 favorit fruit fetched!", topThree });
+};
